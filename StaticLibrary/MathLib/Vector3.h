@@ -33,6 +33,17 @@ public:
 	
 	Vector3& operator /= (float scalar);
 
+	float dot(const Vector3& other);
+
+	Vector3 cross(const Vector3& other);
+
+	float magnitude() const;	float magnitudeSqr() const;
+	float distance(const Vector3& other) const;
+
+	void normalise();
+
+	Vector3 normalised() ;
+
 };
 
 Vector3 operator *(float scalar, Vector3 vector);

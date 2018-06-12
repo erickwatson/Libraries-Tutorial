@@ -5,9 +5,10 @@ int main() {
 
 	if (runUnitTests() == false) {
 		std::cout << "Unit test failed!" << std::endl;
+		system("PAUSE");
 		return -1;
 	}
 	std::cout << "All tests passed successfully." << std::endl;
-
+	system("PAUSE");
 	return 0;
 }

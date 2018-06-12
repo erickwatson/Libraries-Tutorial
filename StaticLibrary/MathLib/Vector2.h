@@ -35,6 +35,17 @@ public:
 
 	Vector2& operator = (const Vector2& other);
 
+	float dot(const Vector2& other);
+
+	float cross(const Vector2& other);
+
+	float magnitude() const;	float magnitudeSqr() const;
+	float distance(const Vector2& other) const;
+
+	void normalise();
+
+	Vector2 normalised();
+
 };
 
 Vector2 operator *(float scalar, Vector2 vector);
