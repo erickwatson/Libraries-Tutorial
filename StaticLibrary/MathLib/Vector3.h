@@ -13,7 +13,10 @@ public:
 	Vector3();
 	Vector3(float, float, float);
 
-	float operator [] (int index) const;
+	// Changed this for Matrix3 to work
+	// Was originally:
+	// float operator [] (int index) const;
+	float& operator [] (int index);
 	operator float* () { 
 		return &data[0]; 
 	}

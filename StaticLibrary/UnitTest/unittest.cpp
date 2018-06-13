@@ -13,7 +13,7 @@
 	std::ostream& operator << (std::ostream& os, Vector4& rhs) {
 		float* a = (float*)rhs;
 		os << std::setprecision(12) << a[0] << "," << std::setprecision(12) << a[1] << "," << std::setprecision(12) << a[2] << "," << std::setprecision(12) << a[3]; return os; }
-	/*std::ostream& operator << (std::ostream& os, Matrix2& rhs) {
+	std::ostream& operator << (std::ostream& os, Matrix2& rhs) {
 		float* a = (float*)rhs;
 		for (int i = 0; i < 4; ++i) {
 			os << std::setprecision(12) << a[i];
@@ -39,7 +39,7 @@
 				os << ",";
 		}
 		return os;
-	}*/
+	}
 
 #endif
 
@@ -81,7 +81,7 @@ bool compare( Vector4& A,  Vector4& B, float tolerance = DEFAULT_TOLERANCE) {
 		return false;
 	return true;
 }
-/*
+
 bool compare( Matrix2& A,  Matrix2& B, float tolerance = DEFAULT_TOLERANCE) {
 	 float* a = ( float*)A;
 	 float* b = ( float*)B;
@@ -111,7 +111,7 @@ bool compare( Matrix4& A,  Matrix4& B, float tolerance = DEFAULT_TOLERANCE) {
 		return false;
 	return true;
 }
-*/
+
 
 template <typename T>
 bool TestFunc(const char* msg, T& a, T& b) {
@@ -121,6 +121,7 @@ bool TestFunc(const char* msg, T& a, T& b) {
 	}
 	return true;
 }
+
 // needed for comparing a float variable with a const float
 template <typename T>
 bool TestFunc(const char* msg, T& a, float b) {
@@ -231,7 +232,7 @@ bool runUnitTests() {
 	TEST("Vector3 normalise", v3a, Vector3(0.0156349f,-0.0558571f,0.998316f));
 	TEST("Vector4 normalise", v4a, Vector4(0.270935f,-0.0537745f,0.961094f,0));
 
-	/*
+
 	// matrix rotation
 	Matrix2 m2;
 	Matrix3 m3a, m3b, m3c, m3d;
@@ -267,18 +268,22 @@ bool runUnitTests() {
 	TEST("Vector3 matrix transform", v3c, Vector3(-22.5994224548f, 44.6950683594f, 862));
 	TEST("Vector4 matrix transform", v4b, Vector4(-455.930236816f, -48.2299995422f, -731.678771973f, 0));
 	TEST("Vector4 matrix transform", v4c, Vector4(41.951499939f, -27.3578968048f, 862, 0));
+	
 
 	// matrix multiply
+	
 	Matrix2 m2b, m2c;
 	m2b.setRotate(-2.145f);
 	m2c = m2 * m2b;
 	m3d = m3a * m3c;
 	m4d = m4c * m4b;
+	
 
 	TEST("Matrix2 multiply", m2c, Matrix2(-0.757975637913f, 0.652282953262f, -0.652282953262f, -0.757975637913f));
 	TEST("Matrix3 multiply", m3d, Matrix3(-0.981004655361f, 0.129707172513f, 0.14424264431f, 0.193984255195f, 0.655946731567f, 0.729454636574f, 0, 0.743579149246f, -0.668647944927f));
 	TEST("Matrix4 multiply", m4d, Matrix4(-0.644213855267f, -0.565019249916f, 0.515501439571f, 0, -0.659384667873f, 0.751805722713f, 0, 0, -0.387556940317f, -0.339913755655f, -0.856888711452f, 0, 0, 0, 0, 1));
-
+	
+	
 	// homogeneous point translation
 	m3b = Matrix3(1, 0, 0,
 				  0, 1, 0,
@@ -332,7 +337,7 @@ bool runUnitTests() {
 	TEST("Vector3 matrix translation D", v3c, Vector3(31.0490131378f, 39.2981109619f, 0));
 	TEST("Vector4 matrix translation C", v4b, Vector4(13.5f, -48.23f, -54, 0));
 	TEST("Vector4 matrix translation D", v4c, Vector4(31.0490131378f, 39.2981109619f, -54, 0));
-	*/
+	
 
 	
 	return true;

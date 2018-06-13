@@ -10,7 +10,7 @@ Vector2::Vector2(float i, float j)
 	y = j;
 };
 
-float Vector2::operator[](int index) const
+float& Vector2::operator[](int index) 
 {
 	return data[index];
 }
