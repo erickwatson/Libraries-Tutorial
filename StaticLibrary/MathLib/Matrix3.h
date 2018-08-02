@@ -8,7 +8,10 @@ public:
 		struct {
 			Vector3 xAxis;
 			Vector3 yAxis;
-			Vector3 zAxis;
+			union {
+				Vector3 zAxis;
+				Vector3 translation;
+			};
 		};
 		Vector3 axis[3];
 		float data[3][3];

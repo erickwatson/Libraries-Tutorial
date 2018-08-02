@@ -21,6 +21,10 @@ const Vector4& Matrix4::operator [] (int index) const {
 	return axis[index];
 };
 
+
+
+
+
 Matrix4 Matrix4::operator * (const Matrix4& other) const {
 
 	Matrix4 result;
@@ -44,14 +48,16 @@ Vector4 Matrix4::operator * (const Vector4& v) const {
 
 	for (int r = 0; r < 4; ++r) {
 		result.data[r] = data[0][r] * v[0] +
-					data[1][r] * v[1] +
-					data[2][r] * v[2] +
-					data[3][r] * v[3];
+						 data[1][r] * v[1] +
+						 data[2][r] * v[2] +
+						 data[3][r] * v[3];
 	}
 
 	return result;
 
 };
+
+
 
 Matrix4& Matrix4::operator = (const Matrix4& other) {
 
@@ -75,19 +81,18 @@ Matrix4 Matrix4::transposed() const {
 	return result;
 };
 
-const Matrix4 Matrix4::identity = Matrix4(
-	1, 0, 0, 0,
-	0, 1, 0, 0,
-	0, 0, 1, 0,
-	0, 0, 0, 1
-);
+// Create a static const identity matrix
+const Matrix4 Matrix4::identity = Matrix4(1, 0, 0, 0,
+										  0, 1, 0, 0,
+										  0, 0, 1, 0,
+										  0, 0, 0, 1);
 
 void Matrix4::setScaled(float x, float y, float z, float w) {
 
 	// set scale of each axis
-	xAxis = { x, 0, 0, 0 };
-	yAxis = { 0, y, 0, 0 };
-	zAxis = { 0, 0, z, 0 };
+	xAxis =		  { x, 0, 0, 0 };
+	yAxis =		  { 0, y, 0, 0 };
+	zAxis =		  { 0, 0, z, 0 };
 	translation = { 0, 0, 0, w };
 
 };
@@ -95,9 +100,9 @@ void Matrix4::setScaled(float x, float y, float z, float w) {
 void Matrix4::setScaled(const Vector4& v) {
 
 	// set scale of each axis
-	xAxis = { v.x, 0, 0, 0 };
-	yAxis = { 0, v.y, 0, 0 };
-	zAxis = { 0, 0, v.z, 0 };
+	xAxis =		  { v.x, 0, 0, 0 };
+	yAxis =		  { 0, v.y, 0, 0 };
+	zAxis =		  { 0, 0, v.z, 0 };
 	translation = { 0, 0, 0, v.w };
 };
 
@@ -123,12 +128,6 @@ void Matrix4::setRotateX(float radians) {
 	zAxis = { 0, -sinf(radians), cosf(radians), 0 };
 	translation = { 0, 0, 0, 1 };
 
-	//might be incorrect above, could be this
-	/*
-	xAxis = { 1,			0,				0 };
-	yAxis = { 0, cosf(radians), -sinf(radians) };
-	zAxis = { 0, sinf(radians), cosf(radians) };
-	*/
 }
 
 void Matrix4::setRotateY(float radians) {
@@ -168,4 +167,9 @@ void Matrix4::rotateZ(float radians) {
 	m.setRotateZ(radians);
 
 	*this = *this * m;
+}
+
+void Matrix4::translate(float x, float y, float z) {
+	// Apply vector offset
+	translation += Vector4(x, y, z, 0);
 }

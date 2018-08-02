@@ -60,6 +60,8 @@ public:
 
 	const Vector4& operator [] (int index) const;
 
+
+
 	Matrix4 operator * (const Matrix4& other) const;
 
 	Vector4 operator * (const Vector4& v) const;
@@ -87,6 +89,9 @@ public:
 	void rotateY(float radians);
 
 	void rotateZ(float radians);
+
+	void translate(float x, float y, float z);
+
 
 };
 
